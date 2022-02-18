@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'colors';
+@import '~normalize.css';
+
+html, body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+p {
+  margin: 0;
+  margin-block: 0;
+}

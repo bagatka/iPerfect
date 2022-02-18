@@ -1,0 +1,43 @@
+@use '~src/variables';
+@use '~src/colors';
+
+$navbarHeight: 100px;
+
+:host {
+  width: 100%;
+  height: $navbarHeight;
+  display: flex;
+  justify-content: center;
+  background-color: colors.$darkColor;
+
+  .container {
+    height: 100%;
+    width: variables.$contentWidth;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    gap: 36px;
+
+    &>a {
+      padding: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      color: colors.$lightColor;
+
+      &:hover {
+        color: rgb(colors.$lightColor, 0.9);
+        cursor: pointer;
+      }
+    }
+
+    &>.accent-link {
+      padding: 8px 16px;
+      background-color: colors.$accentColor;
+      border-radius: 8px;
+
+      &:hover {
+        background-color: rgb(colors.$accentColor, .90);
+      }
+    }
+  }
+}
