@@ -11,7 +11,7 @@
       <img src="assets/img/belarus-map.svg">
     </div>
     <div class="join-link-container">
-      <a class="join-link">Подать заявку</a>
+      <a class="join-link" href="#registration">Подать заявку</a>
     </div>
   </div>
 </div>
@@ -77,11 +77,71 @@
   </div>
 </div>
 
-<div class="dark-container">
+<div class="dark-container" id="timetable">
   <div class="calendar-container">
-    <div class="past-sessions-button"></div>
-    <!--<ng-container *ngFor="let session of calendar">
-      <div>{{ formatDate(session.date) }}</div>
-    </ng-container>-->
+    <h2>Календарь</h2>
+    <div class="calendar-stepper-container">
+      <div class="sessions-button" (click)="pastShown = !pastShown">
+        <img src="assets/img/dropdown.svg" [ngClass]="{ 'rotate180': pastShown }">
+        <span>Прошедшие</span>
+      </div>
+      <div class="past-button-connecting-line"></div>
+      <ng-container *ngFor="let session of getSessions()">
+        <div class="session-container">
+          <div class="session-date-step">{{ formatDate(session.date) }}</div>
+          <div class="session-step">
+            <div class="session-line"></div>
+            <div class="session-content">
+              <div class="session-details session-math">
+                <div class="title">{{ session.math.title }}</div>
+                <span>{{ session.math.time }}</span>
+              </div>
+              <div class="session-details session-physics">
+                <div class="title">{{ session.physics.title }}</div>
+                <span>{{ session.physics.time }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="future-button-connecting-line"></div>
+      <div class="sessions-button" (click)="tillEndShown = !tillEndShown">
+        <img src="assets/img/dropdown.svg" [ngClass]="{ 'rotate180': !tillEndShown }">
+        <span>Будущие</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dark-container" id="registration">
+  <div class="registration-container">
+    <h2>Регистрация</h2>
+    <div class="registration-content">
+      <span>
+        Для регистрации необходимо отправить письмо на
+        адрес: <span class="main extra-bold">kolchevsky@bsu.by</span>
+      </span>
+      <span>
+        Тема письма: Регистрация в Школу для подготовки
+        к ЦТ для поступающих на радиофизику РФиКТ БГУ
+      </span>
+      <span>
+        1. ФИО и дата рождения<br>
+        2. Город, номер школы<br>
+        3. Телефон<br>
+        4. E-mail<br>
+        5. Средний балл<br>
+      </span>
+      <a class="join-link" [href]="getMailToLink()">
+        Подать заявку
+      </a>
+    </div>
+    <span>
+      Для успешно прошедших обучение будет работать<br>
+      <span class="main extra-bold">ИНДИВИДУАЛЬНАЯ ПОДДЕРЖКА</span> при подготовке к
+      ЦТ и при поступлении на <span class="main extra-bold">лучший</span> факультет
+      Республики Беларусь - Факультет Радиофизики и
+      Компьютерных Технологий БГУ.
+    </span>
   </div>
 </div>

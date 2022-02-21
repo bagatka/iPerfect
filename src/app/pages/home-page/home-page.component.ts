@@ -10,6 +10,10 @@ import { SessionModel } from './home-page.model';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent {
+  pastShown: boolean = false;
+  tillEndShown: boolean = false;
+  defaultActiveSessionsShown: number = 5;
+
   readonly calendar: Array<SessionModel> = [
     {
       date: new Date('10/02/2021'),
@@ -398,7 +402,40 @@ export class HomePageComponent {
     }
   ]
 
+  getSessions(): Array<SessionModel> {
+    if (this.pastShown && this.tillEndShown) {
+      return this.calendar;
+    }
+
+    let activeSessions = this.calendar
+      .filter(
+        session => {
+          return this.pastShown
+            ? true
+            : session.date >= new Date();
+        }
+      );
+
+    if (!this.tillEndShown) {
+      activeSessions = activeSessions.slice(0, this.defaultActiveSessionsShown);
+    }
+
+    if (!this.pastShown) {
+      return activeSessions;
+    } else {
+      return this.calendar
+        .filter(session => session.date < new Date());
+    }
+  }
+
   formatDate(date: Date): string {
     return `${dayjs(date).locale('ru').format('DD MMMM')}`
+  }
+
+  getMailToLink(): string {
+    const subject = encodeURIComponent('Регистрация в Школу для подготовки к ЦТ для поступающих на радиофизику РФиКТ БГУ');
+    const body = encodeURIComponent('1. ФИО и дата рождения\n2. Город, номер школы\n3. Телефон\n4. E-mail\n5. Средний балл');
+
+    return `mailto:kolchevsky@bsu.by?subject=${subject}&body=${body}`;
   }
 }

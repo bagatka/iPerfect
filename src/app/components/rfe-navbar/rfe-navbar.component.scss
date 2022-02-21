@@ -23,6 +23,7 @@ $navbarHeight: 100px;
       font-size: 18px;
       font-weight: 700;
       color: colors.$lightColor;
+      text-decoration: none;
 
       &:hover {
         color: rgb(colors.$lightColor, 0.9);
