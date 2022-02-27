@@ -23,7 +23,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Вычисления и вектора',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -34,7 +34,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Вычисления и вектора',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -45,7 +45,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Механика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -56,7 +56,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Механика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -67,7 +67,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Механика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -78,7 +78,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Механика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -89,7 +89,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Механика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -100,7 +100,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Механика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -111,7 +111,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Молекулярная физика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -122,7 +122,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Молекулярная физика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -133,7 +133,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Молекулярная физика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -144,7 +144,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Молекулярная физика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -155,7 +155,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Молекулярная физика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -166,7 +166,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Молекулярная физика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -177,7 +177,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Электричество',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -188,7 +188,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Электричество',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -199,7 +199,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Электричество',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -210,7 +210,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Электричество',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -221,7 +221,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Электричество',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -232,7 +232,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Электричество',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -243,7 +243,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Оптика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -254,7 +254,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Оптика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -265,7 +265,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Оптика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -276,7 +276,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Оптика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -287,7 +287,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Оптика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -298,7 +298,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Колебания и волны',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -309,7 +309,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Колебания и волны',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -320,7 +320,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Колебания и волны',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -331,7 +331,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Атомная и ядерная физика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -342,7 +342,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Атомная и ядерная физика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -353,7 +353,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Атомная и ядерная физика',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -364,7 +364,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Общие принципы и методики решения',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -375,7 +375,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Общие принципы и методики решения',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -386,7 +386,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Общие принципы и методики решения',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     },
     {
@@ -397,7 +397,7 @@ export class HomePageComponent {
       },
       physics: {
         title: 'Общие принципы и методики решения',
-        time: '19:00 - 19:45'
+        time: '20:00 - 20:45'
       }
     }
   ]
