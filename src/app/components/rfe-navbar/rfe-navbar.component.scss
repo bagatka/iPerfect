@@ -1,7 +1,7 @@
 @use '~src/variables';
 @use '~src/colors';
 
-$navbarHeight: 100px;
+$navbarHeight: 10vh;
 
 :host {
   width: 100%;
@@ -38,6 +38,37 @@ $navbarHeight: 100px;
 
       &:hover {
         background-color: rgb(colors.$accentColor, .90);
+      }
+    }
+  }
+
+  @media screen and (min-width: 1000px) and (max-width: 1199px) {
+    .container {
+      width: 950px;
+    }
+  }
+
+  @media screen and (min-width: 800px) and (max-width: 999px) {
+    .container {
+      width: 750px;
+    }
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 799px) {
+    .container {
+      width: 570px;
+    }
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 599px) {
+    .container {
+      width: 300px;
+      justify-content: center;
+
+      &>a {
+        width: 120px;
+        font-size: 12px;
+        padding: 6px;
       }
     }
   }

@@ -91,5 +91,8 @@
       }
     }
   },
-  "defaultProject": "iPerfect"
+  "defaultProject": "iPerfect",
+  "cli": {
+    "analytics": false
+  }
 }

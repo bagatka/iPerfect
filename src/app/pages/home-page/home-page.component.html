@@ -11,7 +11,7 @@
       <img src="assets/img/belarus-map.svg">
     </div>
     <div class="join-link-container">
-      <a class="join-link" href="#registration">Подать заявку</a>
+      <a class="join-link" href="#registration">Регистрация</a>
     </div>
   </div>
 </div>
@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<div class="dark-container">
+<div class="dark-container" id="timetable">
   <div class="schedule-container">
     <h2>Расписание</h2>
     <div class="schedule-details">
@@ -77,7 +77,7 @@
   </div>
 </div>
 
-<div class="dark-container" id="timetable">
+<div class="dark-container">
   <div class="calendar-container">
     <h2>Календарь</h2>
     <div class="calendar-stepper-container">
@@ -132,7 +132,7 @@
         4. E-mail<br>
         5. Средний балл<br>
       </span>
-      <a class="join-link" [href]="getMailToLink()">
+      <a class="join-link" [href]="mailToLink">
         Подать заявку
       </a>
     </div>

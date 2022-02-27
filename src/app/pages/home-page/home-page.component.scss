@@ -1,6 +1,210 @@
 @use '../../../colors';
 @use '../../../variables';
 
+@mixin adaptiveSize($width, $scale: 1) {
+  .welcome-container {
+    width: $width;
+    margin-top: $width / 5 / $scale;
+    align-items: center;
+
+    &>.title-container {
+      z-index: 1;
+
+      &>h1,h2,h3 {
+        margin: 0;
+        line-height: 44px;
+      }
+
+      &>h1 {
+        font-size: 44px;
+        font-weight: 800;
+      }
+
+      &>h2 {
+        font-size: 38px;
+        font-weight: 700;
+      }
+
+      &>h3 {
+        font-size: 26px;
+      }
+    }
+
+    &>.map-container {
+      &>img {
+        position: static;
+        width: $width / $scale;
+      }
+    }
+
+    &>.join-link-container {
+      margin-top: $width / 6 / $scale;
+    }
+  }
+
+  .description-container {
+    width: $width;
+    margin: 40px 0;
+
+    &>.school-description {
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    &>.detailed-description-container {
+      display: block;
+
+      &>.detailed-description {
+        width: unset;
+        height: unset;
+        font-size: 20px;
+        overflow: hidden;
+      }
+
+      &>img {
+        margin-right: 8px;
+        float: left;
+        width: 120px;
+        height: 200px;
+      }
+    }
+  }
+
+  .discord-container {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: $width;
+    gap: 60px;
+
+    &>.discord-instructions {
+      &>span {
+        font-size: 24px;
+      }
+    }
+
+    &>.discord-details {
+      gap: 40px;
+
+      &>.challenges-description {
+        font-size: 18px;
+        padding: 12px;
+      }
+    }
+  }
+
+  .schedule-container {
+    width: $width;
+    margin-bottom: 20px;
+
+    &>h2 {
+      font-size: 32px;
+    }
+
+    &>.schedule-details {
+      gap: 12px;
+
+      &>h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      &>.session-details {
+        font-size: 22px;
+
+        &>span {
+          width: 70px;
+        }
+      }
+    }
+  }
+
+  .calendar-container {
+    width: $width;
+    gap: 30px;
+    margin: 30px 0;
+
+    .sessions-button {
+      width: 160px;
+      gap: 8px;
+      font-size: 20px;
+    }
+
+    &>h2 {
+      font-size: 32px;
+    }
+
+    &>.calendar-stepper-container {
+      &>.past-button-connecting-line {
+        height: 40px;
+      }
+
+      &>.future-button-connecting-line {
+        height: 20px;
+      }
+
+      .session-container {
+        &>.session-date-step {
+          width: 160px;
+          height: 30px;
+          border-radius: 16px;
+          font-size: 18px;
+        }
+
+        &>.session-step {
+          &>.session-content {
+            margin: 12px;
+            gap: 4px;
+
+            &>.session-details {
+              width: 270px;
+              gap: 8px;
+
+              &>.title {
+                border-radius: 10px;
+                font-size: 14px;
+                width: 160px;
+                padding: 2px 8px;
+              }
+
+              &>span {
+                font-size: 14px;
+                width: 110px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .registration-container {
+    width: $width;
+    gap: 30px;
+    margin: 20px 0;
+
+    &>h2 {
+      font-size: 32px;
+    }
+
+    &>.registration-content {
+      gap: 20px;
+
+      &>span {
+        font-size: 20px;
+      }
+    }
+
+    &>span {
+      font-size: 18px;
+      margin-top: 40px;
+    }
+  }
+
+  .join-link {
+    padding: 12px 24px;
+  }
+}
+
 :host {
   width: 100%;
   height: 100%;
@@ -22,6 +226,7 @@
   }
 
   .welcome-container {
+    height: 70vh;
     position: relative;
     margin-top: 200px;
     margin-bottom: 140px;
@@ -61,12 +266,12 @@
       &>img {
         position: absolute;
         top: -80px;
-        right: -100px;
+        right: -10px;
       }
     }
 
     &>.join-link-container {
-      margin-top: 160px;
+      margin-top: 60px;
     }
   }
 
@@ -313,7 +518,6 @@
     color: colors.$lightColor;
     gap: 70px;
     margin: 50px 0;
-    padding-bottom: 400px;
 
     &>h2 {
       margin: 0;
@@ -377,5 +581,29 @@
 
   .rotate180 {
     transform: rotate(180deg);
+  }
+
+  @media screen and (min-width: 1100px) and (max-width: 1249px) {
+    @include adaptiveSize(1000px, 2.2);
+  }
+
+  @media screen and (min-width: 1000px) and (max-width: 1099px) {
+    @include adaptiveSize(900px, 2);
+  }
+
+  @media screen and (min-width: 900px) and (max-width: 999px) {
+    @include adaptiveSize(800px, 1.8);
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 899px) {
+    @include adaptiveSize(600px, 1.6);
+  }
+
+  @media screen and (min-width: 480px) and (max-width: 599px) {
+    @include adaptiveSize(480px, 1.4);
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 479px) {
+    @include adaptiveSize(320px, 1.2);
   }
 }
