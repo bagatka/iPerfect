@@ -1,10 +1,11 @@
 @use '../../../colors';
 @use '../../../variables';
+@use 'sass:math';
 
 @mixin adaptiveSize($width, $scale: 1) {
   .welcome-container {
     width: $width;
-    margin-top: $width / 5 / $scale;
+    margin-top: math.div(math.div($width, 5), $scale);
     align-items: center;
 
     &>.title-container {
@@ -33,12 +34,12 @@
     &>.map-container {
       &>img {
         position: static;
-        width: $width / $scale;
+        width: math.div($width, $scale);
       }
     }
 
     &>.join-link-container {
-      margin-top: $width / 6 / $scale;
+      margin-top: math.div(math.div($width, 6), $scale);
     }
   }
 
