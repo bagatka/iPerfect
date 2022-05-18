@@ -9,6 +9,10 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent,
     pathMatch: 'full'
+  },
+  {
+    path: 'testing',
+    loadChildren: () => import('./pages/centralized-testing/centralized-testing.module').then(m => m.CentralizedTestingModule)
   }
 ];
 

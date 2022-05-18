@@ -20,4 +20,5 @@ import { RfeNavbarComponent } from './components/rfe-navbar/rfe-navbar.component
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

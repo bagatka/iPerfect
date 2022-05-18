@@ -1,0 +1,15 @@
+<div class="coordinate-line-container">
+  <div class="line-container">
+    <div class="line"></div>
+    <img src="assets/img/arrow.svg">
+  </div>
+  <div class="strokes-container" [ngStyle]="{ 'gap': strokesInterval + 'px' }">
+    <ng-container *ngFor="let stroke of strokesValues">
+      <div class="stroke-item-container">
+        <div>{{ stroke.name }}</div>
+        <div class="stroke"></div>
+        <div>{{ stroke.value }}</div>
+      </div>
+    </ng-container>
+  </div>
+</div>
