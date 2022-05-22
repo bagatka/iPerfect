@@ -13,3 +13,9 @@
     </ng-container>
   </div>
 </div>
+
+<ng-container *ngIf="mode === TaskComponentMode.Edit">
+  <form [formGroup]="">
+    <input type="number">
+  </form>
+</ng-container>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Task } from '../../../../../../stories/components/tasks/tasks.model';
 import { TasksService } from '../../../../../api/tasks.service';
 import { TaskComponentBase, TaskComponentMode } from '../../../task-component-base.directive';
@@ -7,7 +8,7 @@ import { TaskComponentBase, TaskComponentMode } from '../../../task-component-ba
 interface A1_2015Metadata {
   strokes: {
     interval: number;
-    values: Array<Stroke>
+    values: Array<Stroke>;
   }
 }
 
@@ -27,6 +28,8 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
     catalog: '2015'
   };
 
+  modelConfigurationForm?: FormGroup;
+
   get strokesValues(): Array<Stroke> {
     return this.model.metadata?.strokes.values ?? [];
   }
@@ -36,6 +39,7 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
   }
 
   constructor(
+    private readonly formBuilder: FormBuilder,
     private readonly tasksService: TasksService
   ) {
     super();
@@ -56,7 +60,6 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
   }
 
   private initializeCreateState(): void {
-    console.log('TEST!!!!!!');
     const defaultInterval = 40;
     const defaultStrokesCount = 10;
     const strokesArray: Array<Stroke> = Array.from(
@@ -86,5 +89,11 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
 
   private initializePlayMode(): void {
 
+  }
+
+  private buildForm(): FormGroup {
+    return this.formBuilder.group({
+      interval: []
+    });
   }
 }

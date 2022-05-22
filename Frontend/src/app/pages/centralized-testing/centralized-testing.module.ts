@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TasksService } from '../../api/tasks.service';
 import { A1_2015Component } from '../../components/tasks/math/2015/a1/a1_2015.component';
 
@@ -20,7 +21,8 @@ import { TaskPageComponent } from './task-page/task-page.component';
   imports: [
     CommonModule,
     HttpClientModule,
-    CentralizedTestingRoutingModule
+    CentralizedTestingRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
     TasksService

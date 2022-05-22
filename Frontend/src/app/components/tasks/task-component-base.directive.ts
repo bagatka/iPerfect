@@ -9,4 +9,8 @@ export enum TaskComponentMode {
 @Directive({})
 export abstract class TaskComponentBase {
   @Input() mode: TaskComponentMode = TaskComponentMode.Play;
+
+  get TaskComponentMode(): typeof TaskComponentMode {
+    return TaskComponentMode;
+  }
 }
