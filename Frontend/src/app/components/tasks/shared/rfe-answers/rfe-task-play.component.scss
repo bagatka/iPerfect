@@ -1,0 +1,24 @@
+@use '~src/colors';
+
+.task-text {
+  color: colors.$lightColor;
+  white-space: pre-line;
+  max-width: 600px;
+  margin-bottom: 50px;
+}
+
+.play-answers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 600px;
+  gap: 25px;
+  p {
+    color: colors.$lightColor;
+  }
+}
+
+img {
+  height: 100px;
+}

@@ -1,21 +1,44 @@
-<div class="coordinate-line-container">
-  <div class="line-container">
-    <div class="line"></div>
-    <img src="assets/img/arrow.svg">
-  </div>
-  <div class="strokes-container" [ngStyle]="{ 'gap': strokesInterval + 'px' }">
-    <ng-container *ngFor="let stroke of strokesValues">
-      <div class="stroke-item-container">
-        <div>{{ stroke.name }}</div>
-        <div class="stroke"></div>
-        <div>{{ stroke.value }}</div>
-      </div>
-    </ng-container>
-  </div>
-</div>
+<ng-container *ngIf="viewReady">
+  <rfe-coordinate-line [model]="coordinateLineModel"></rfe-coordinate-line>
 
-<ng-container *ngIf="mode === TaskComponentMode.Edit">
-  <form [formGroup]="">
-    <input type="number">
-  </form>
+  <ng-container *ngIf="mode === TaskComponentMode.Create || mode === TaskComponentMode.Edit">
+    <form [formGroup]="modelConfigurationForm">
+      <h2>Task setup</h2>
+      <div formGroupName="coordinateLine">
+        <div formGroupName="strokes">
+          <input type="number" formControlName="interval">
+          <ng-container formArrayName="values" *ngFor="let _ of strokeValueFromArray.controls; let i = index">
+            <div [formGroupName]="i">
+              <input type="text" formControlName="name">
+              <input type="text" formControlName="value">
+              <button (click)="removeStrokeValue(i)">Remove</button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <button (click)="addStrokeValue()">Add</button>
+      <div class="apply-json-form">
+        <input type="text" #jsonInput>
+        <button (click)="applyJson(jsonInput.value)">Apply</button>
+      </div>
+      <h2>Task text</h2>
+      <textarea formControlName="taskText"></textarea>
+      <h2>Answers</h2>
+      <div class="answers">
+        <div formArrayName="answers" *ngFor="let _ of answersFromArray.controls; let i = index">
+          <p>{{ i + 1 }}</p>
+          <input type="text" [formControlName]="i">
+        </div>
+      </div>
+      <h2>Correct answer</h2>
+      <input type="number" formControlName="correctAnswer">
+      <button (click)="printJson()">Print</button>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="mode === TaskComponentMode.Play">
+    <div class="play-answers">
+      <rfe-task-play [answers]="answers" [taskText]="taskText"></rfe-task-play>
+    </div>
+  </ng-container>
 </ng-container>

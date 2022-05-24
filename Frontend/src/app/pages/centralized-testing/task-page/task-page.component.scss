@@ -1,8 +1,10 @@
 @use '~src/colors';
 
 :host {
-  height: 100vh;
+  margin-top: 200px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 200px;
 }

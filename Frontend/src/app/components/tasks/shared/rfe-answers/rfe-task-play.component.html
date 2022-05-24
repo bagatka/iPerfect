@@ -1,0 +1,14 @@
+<p class="task-text">{{ taskText }}</p>
+<div class="play-answers">
+  <ng-container *ngIf="!images; else imageAnswers">
+    <ng-container *ngFor="let answer of answers; let i = index">
+      <p>{{ i + 1 + ') ' + answer }}</p>
+    </ng-container>
+  </ng-container>
+  <ng-template #imageAnswers>
+    <ng-container *ngFor="let answer of answers; let i = index">
+      <p>{{ i + 1 + ')' }}</p>
+      <img [src]="'assets/img/A4_2015/' + answer">
+    </ng-container>
+  </ng-template>
+</div>

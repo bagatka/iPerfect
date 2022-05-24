@@ -1,0 +1,61 @@
+<div class="main-container">
+  <h1>Настройки теста</h1>
+
+  <form [formGroup]="testSettingsForm">
+    <h2>Предмет</h2>
+    <div class="select-buttons">
+      <button
+        (click)="setSubject('math')"
+        class="math-button"
+        [ngClass]="{ 'selected': mathSelected }"
+      >
+        Математика
+      </button>
+      <button
+        (click)="setSubject('physics')"
+        class="physics-button"
+        [ngClass]="{ 'selected': physicsSelected }"
+      >
+        Физика
+      </button>
+    </div>
+
+    <h2>Уровень сложности</h2>
+    <div class="select-buttons">
+      <button
+        [disabled]="!subjectSelected"
+        (click)="setLevel('simple')"
+        class="level-button"
+        [ngClass]="{ 'selected': selectedLevel === 'simple', 'math': mathSelected, 'physics': physicsSelected }"
+      >
+        Лёгкий
+      </button>
+      <button
+        [disabled]="!subjectSelected"
+        (click)="setLevel('classic')"
+        class="level-button"
+        [ngClass]="{ 'selected': selectedLevel === 'classic', 'math': mathSelected, 'physics': physicsSelected }"
+      >
+        Классический
+      </button>
+      <button
+        [disabled]="!subjectSelected"
+        (click)="setLevel('fast')"
+        class="level-button"
+        [ngClass]="{ 'selected': selectedLevel === 'fast', 'math': mathSelected, 'physics': physicsSelected }"
+      >
+        Скоростной
+      </button>
+      <button
+        [disabled]="!subjectSelected"
+        (click)="setLevel('student')"
+        class="level-button"
+        [ngClass]="{ 'selected': selectedLevel === 'student', 'math': mathSelected, 'physics': physicsSelected }"
+      >
+        Студент
+      </button>
+    </div>
+  </form>
+
+  <button [disabled]="testSettingsForm.invalid" class="start-button">Старт</button>
+</div>

@@ -1,0 +1,39 @@
+@use '~src/colors';
+
+:host {
+  display: flex;
+  justify-content: center;
+
+  .main-container {
+    margin-top: 50px;
+    width: min(90vw, 1100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: colors.$lightColor;
+
+    button {
+      margin-top: 200px;
+      width: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 8px;
+      font-size: 26px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      background-color: colors.$mainColor;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      &:active {
+        color: colors.$lightColor;
+      }
+    }
+  }
+}

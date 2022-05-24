@@ -2,13 +2,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TasksService } from '../../api/tasks.service';
-import { A1_2015Component } from '../../components/tasks/math/2015/a1/a1_2015.component';
+import { RfeTasksModuleModule } from '../../components/tasks/rfe-tasks-module.module';
 
 import { CentralizedTestingRoutingModule } from './centralized-testing-routing.module';
 import { CentralizedTestingComponent } from './centralized-testing.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { TaskPageComponent } from './task-page/task-page.component';
+import { TestInitializationComponent } from './test-initialization/test-initialization.component';
 
 
 @NgModule({
@@ -16,16 +16,15 @@ import { TaskPageComponent } from './task-page/task-page.component';
     CentralizedTestingComponent,
     WelcomePageComponent,
     TaskPageComponent,
-    A1_2015Component
+    TestInitializationComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     CentralizedTestingRoutingModule,
-    ReactiveFormsModule
-  ],
-  providers: [
-    TasksService
+    ReactiveFormsModule,
+    RfeTasksModuleModule
   ]
 })
-export class CentralizedTestingModule { }
+export class CentralizedTestingModule {
+}

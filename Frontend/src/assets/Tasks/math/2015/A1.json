@@ -1,0 +1,372 @@
+[
+  {
+    "taskText": "На отрезке представлены точки R, F, E, B, S, U.\n\nЗначение координаты точки B равно 8/7, то точка, значение которой равно 1, это:",
+    "correctAnswer": 2,
+    "answers": [
+      "F",
+      "E",
+      "S",
+      "U",
+      "R"
+    ],
+    "coordinateLine": {
+      "strokes": {
+        "interval": 13,
+        "values": [
+          {
+            "name": "R",
+            "value": "0"
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "F",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "E",
+            "value": ""
+          },
+          {
+            "name": "B",
+            "value": "8/7"
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "S",
+            "value": ""
+          },
+          {
+            "name": "U",
+            "value": ""
+          }
+        ]
+      }
+    }
+  },
+  {
+    "taskText": "На отрезке представлены точки R, F, E, B, S, U.\n\nЗначение координаты точки B равно 8/3, то точка, значение которой равно 1, это:",
+    "correctAnswer": 2,
+    "answers": [
+      "F",
+      "E",
+      "S",
+      "U",
+      "R"
+    ],
+    "coordinateLine": {
+      "strokes": {
+        "interval": 13,
+        "values": [
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "R",
+            "value": "0"
+          },
+          {
+            "name": "F",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "E",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "B",
+            "value": "8/3"
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "S",
+            "value": ""
+          },
+          {
+            "name": "U",
+            "value": ""
+          }
+        ]
+      }
+    }
+  },
+  {
+    "taskText": "На отрезке представлены точки R, F, E, B, S, U.\n\nЗначение координаты точки B равно 8/5, то точка, значение которой равно 1, это:",
+    "correctAnswer": 1,
+    "answers": [
+      "F",
+      "E",
+      "S",
+      "U",
+      "R"
+    ],
+    "coordinateLine": {
+      "strokes": {
+        "interval": 13,
+        "values": [
+          {
+            "name": "R",
+            "value": "0"
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "F",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "E",
+            "value": "8/5"
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "B",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "S",
+            "value": ""
+          },
+          {
+            "name": "U",
+            "value": ""
+          }
+        ]
+      }
+    }
+  },
+  {
+    "taskText": "На отрезке представлены точки R, F, E, B, S, U.\n\nЗначение координаты точки B равно 8/11, то точка, значение которой равно 1, это:",
+    "correctAnswer": 3,
+    "answers": [
+      "F",
+      "E",
+      "S",
+      "U",
+      "R"
+    ],
+    "coordinateLine": {
+      "strokes": {
+        "interval": 13,
+        "values": [
+          {
+            "name": "R",
+            "value": "0"
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "E",
+            "value": "8/11"
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "B",
+            "value": ""
+          },
+          {
+            "name": "S",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "U",
+            "value": ""
+          }
+        ]
+      }
+    }
+  },
+  {
+    "taskText": "На отрезке представлены точки R, F, E, B, S, U.\n\nЗначение координаты точки B равно 7/13, то точка, значение которой равно 1, это:",
+    "correctAnswer": 4,
+    "answers": [
+      "F",
+      "E",
+      "S",
+      "U",
+      "R"
+    ],
+    "coordinateLine": {
+      "strokes": {
+        "interval": 13,
+        "values": [
+          {
+            "name": "R",
+            "value": "0"
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "E",
+            "value": "7/13"
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "B",
+            "value": ""
+          },
+          {
+            "name": "S",
+            "value": ""
+          },
+          {
+            "name": "",
+            "value": ""
+          },
+          {
+            "name": "U",
+            "value": ""
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "taskText": "В каком из случаев фигуры изображены симметрично относительно зелёной точки?",
+    "answers": [
+      "slice1.svg",
+      "slice2.svg",
+      "slice3.svg",
+      "slice4.svg",
+      "slice5.svg"
+    ],
+    "correctAnswer": 1
+  }
+]

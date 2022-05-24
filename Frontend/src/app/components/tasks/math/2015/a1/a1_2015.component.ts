@@ -1,20 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Task } from '../../../../../../stories/components/tasks/tasks.model';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TasksService } from '../../../../../api/tasks.service';
-import { TaskComponentBase, TaskComponentMode } from '../../../task-component-base.directive';
+import { MetadataBase } from '../../../models';
+import { CoordinateLine, Stroke } from '../../../shared/rfe-coordinate-line/rfe-coordinate-line.model';
+import { Task, TaskComponentBase, TaskComponentMode } from '../../../task-component-base.directive';
 
 
-interface A1_2015Metadata {
-  strokes: {
-    interval: number;
-    values: Array<Stroke>;
-  }
-}
-
-interface Stroke {
-  name: string;
-  value: string;
+interface A1_2015Metadata extends MetadataBase {
+  coordinateLine: CoordinateLine;
 }
 
 @Component({
@@ -23,19 +16,33 @@ interface Stroke {
   styleUrls: ['./a1_2015.component.scss']
 })
 export class A1_2015Component extends TaskComponentBase implements OnInit {
-  model: Task<A1_2015Metadata> = {
-    id: 'A1-2015',
-    catalog: '2015'
+  protected identity: Task = {
+    id: 'A1',
+    catalog: '2015',
+    subject: 'math'
   };
 
-  modelConfigurationForm?: FormGroup;
+  viewReady = false;
+  modelConfigurationForm!: FormGroup;
 
-  get strokesValues(): Array<Stroke> {
-    return this.model.metadata?.strokes.values ?? [];
+  get coordinateLineModel(): CoordinateLine {
+    return this.modelConfigurationForm.get('coordinateLine')?.value;
   }
 
-  get strokesInterval(): number {
-    return this.model.metadata?.strokes.interval ?? 0;
+  get strokeValueFromArray(): FormArray {
+    return this.modelConfigurationForm.get('coordinateLine.strokes.values') as FormArray ?? this.formBuilder.array([]);
+  }
+
+  get answersFromArray(): FormArray {
+    return this.modelConfigurationForm.get('answers') as FormArray ?? this.formBuilder.array([]);
+  }
+
+  get taskText(): string {
+    return this.modelConfigurationForm.get('taskText')?.value;
+  }
+
+  get answers(): Array<string> {
+    return this.answersFromArray.value;
   }
 
   constructor(
@@ -59,9 +66,44 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
     }
   }
 
+  addStrokeValue(): void {
+    this.strokeValueFromArray.push(
+      this.formBuilder.group({
+        name: ['', [Validators.required]],
+        value: [0, [Validators.required]]
+      })
+    )
+  }
+
+  removeStrokeValue(i: number): void {
+    this.strokeValueFromArray.removeAt(i);
+  }
+
+  printJson(): void {
+    console.log(JSON.stringify(this.modelConfigurationForm.value))
+  }
+
+  applyJson(json: string): void {
+    const value: A1_2015Metadata = JSON.parse(json);
+
+    this.strokeValueFromArray.clear();
+
+    value.coordinateLine.strokes.values.forEach(item => {
+      this.strokeValueFromArray.push(
+        this.formBuilder.group({
+          name: [item.name, [Validators.required]],
+          value: [item.value, [Validators.required]]
+        })
+      )
+    });
+
+    this.modelConfigurationForm.patchValue(value);
+  }
+
   private initializeCreateState(): void {
-    const defaultInterval = 40;
+    const defaultInterval = 30;
     const defaultStrokesCount = 10;
+
     const strokesArray: Array<Stroke> = Array.from(
       { length: defaultStrokesCount },
       () => ({
@@ -70,30 +112,68 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
       })
     );
 
-    this.model.metadata = {
-      strokes: {
-        interval: defaultInterval,
-        values: strokesArray
-      }
+    const model: A1_2015Metadata = {
+      coordinateLine: {
+        strokes: {
+          interval: defaultInterval,
+          values: strokesArray
+        }
+      },
+      taskText: '',
+      answers: Array.from({ length: 5 }, (_, index) => `${index}`),
+      correctAnswer: 0
     };
+
+    this.modelConfigurationForm = this.buildForm(model);
+    this.viewReady = true;
   }
 
   private initializeEditMode(): void {
-    this.tasksService.getTaskMetadata<A1_2015Metadata>(this.model.catalog, this.model.id)
-      .subscribe(
-        taskMetadata => {
-          this.model.metadata = taskMetadata;
+    this.tasksService
+      .getTaskMetadata<A1_2015Metadata>(this.identity.subject, this.identity.catalog, this.identity.id)
+      .subscribe(value => {
+          this.modelConfigurationForm = this.buildForm(value);
+          this.patchForm(value);
+          this.viewReady = true;
         }
       );
   }
 
   private initializePlayMode(): void {
-
+    this.tasksService
+      .getTaskMetadata<A1_2015Metadata>(this.identity.subject, this.identity.catalog, this.identity.id)
+      .subscribe(value => {
+          this.modelConfigurationForm = this.buildForm(value);
+          this.patchForm(value);
+          this.viewReady = true;
+        }
+      );
   }
 
-  private buildForm(): FormGroup {
+  private buildForm(model: A1_2015Metadata): FormGroup {
     return this.formBuilder.group({
-      interval: []
+      taskText: ['', [Validators.required]],
+      correctAnswer: [0, [Validators.required]],
+      answers: this.formBuilder.array(model.answers.map(
+          item => this.formBuilder.control([item, [Validators.required]])
+        )
+      ),
+      coordinateLine: this.formBuilder.group({
+        strokes: this.formBuilder.group({
+          interval: [model.coordinateLine.strokes.interval, [Validators.required]],
+          values: this.formBuilder.array(model.coordinateLine.strokes.values.map(item => {
+              return this.formBuilder.group({
+                name: [item.name, [Validators.required]],
+                value: [item.value, [Validators.required]]
+              })
+            })
+          )
+        })
+      })
     });
+  }
+
+  private patchForm(model: A1_2015Metadata): void {
+    this.modelConfigurationForm.patchValue(model);
   }
 }

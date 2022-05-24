@@ -1,0 +1,101 @@
+@use '~src/colors';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: colors.$lightColor;
+
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    width: min(90vw, 1100px);
+
+    & > h1 {
+      text-align: center;
+      font-size: 42px;
+    }
+
+    .select-buttons {
+      button {
+        padding: 8px;
+        font-size: 22px;
+        font-weight: 800;
+
+        &:not(:disabled) {
+          cursor: pointer;
+        }
+      }
+
+      .selected {
+        transform: scale(1.1);
+      }
+
+      .math-button {
+        border-radius: 12px 0 0 12px;
+
+        &.selected {
+          background-color: colors.$mainColor;
+        }
+      }
+
+      .physics-button {
+        border-radius: 0 12px 12px 0;
+
+        &.selected {
+          background-color: colors.$accentColor;
+        }
+      }
+
+      .level-button:not(:first-child):not(:last-child) {
+        border-radius: 0;
+      }
+
+      .level-button:first-child {
+        border-radius: 12px 0 0 12px;
+      }
+
+      .level-button:last-child {
+        border-radius: 0 12px 12px 0;
+      }
+
+      .level-button.selected {
+        &.math {
+          background-color: colors.$mainColor;
+        }
+
+        &.physics {
+          background-color: colors.$accentColor;
+        }
+      }
+    }
+
+    .start-button {
+      color: colors.$darkColor;
+      margin-top: 100px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 8px;
+      font-size: 26px;
+      font-weight: 700;
+      border-radius: 12px;
+
+      &:not(:disabled) {
+        cursor: pointer;
+        background-color: colors.$mainColor;
+      }
+
+      &:hover:not(:disabled) {
+        opacity: 0.8;
+      }
+
+      &:active:not(:disabled) {
+        color: colors.$lightColor;
+      }
+    }
+  }
+}
