@@ -6,9 +6,12 @@ import { RfeTasksModuleModule } from '../../components/tasks/rfe-tasks-module.mo
 
 import { CentralizedTestingRoutingModule } from './centralized-testing-routing.module';
 import { CentralizedTestingComponent } from './centralized-testing.component';
+import { TestStateService } from './test-state.service';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { TaskPageComponent } from './task-page/task-page.component';
 import { TestInitializationComponent } from './test-initialization/test-initialization.component';
+import { TestingFlowComponent } from './testing-flow/testing-flow.component';
+import { TestingResultsComponent } from './testing-results/testing-results.component';
 
 
 @NgModule({
@@ -16,7 +19,9 @@ import { TestInitializationComponent } from './test-initialization/test-initiali
     CentralizedTestingComponent,
     WelcomePageComponent,
     TaskPageComponent,
-    TestInitializationComponent
+    TestInitializationComponent,
+    TestingFlowComponent,
+    TestingResultsComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +29,9 @@ import { TestInitializationComponent } from './test-initialization/test-initiali
     CentralizedTestingRoutingModule,
     ReactiveFormsModule,
     RfeTasksModuleModule
+  ],
+  providers: [
+    TestStateService
   ]
 })
 export class CentralizedTestingModule {

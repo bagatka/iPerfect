@@ -57,5 +57,5 @@
     </div>
   </form>
 
-  <button [disabled]="testSettingsForm.invalid" class="start-button">Старт</button>
+  <button (click)="startTesting()" [disabled]="testSettingsForm.invalid" class="start-button">Старт</button>
 </div>

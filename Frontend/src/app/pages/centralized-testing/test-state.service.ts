@@ -42,7 +42,7 @@ export class TestStateService {
         case 'fast':
         case 'student':
           const startDate = localStorage.getItem('startDate') as unknown as number;
-          if ((startDate / 1000 + this.getLevelMaxTimeInSeconds(level)) < (Date.now() / 1000)) {
+          if ((startDate / 1000 + this.getLevelMaxTimeInSeconds(level)) > (Date.now() / 1000)) {
             this.state.setLevel(level);
             this.state.setSubject(subject);
             break;
@@ -52,8 +52,25 @@ export class TestStateService {
           break;
       }
     }
+  }
 
-    localStorage.clear();
+  isActiveSession(): boolean {
+    return this.getSubject() && this.getLevel() && (this.getSecondsLeft() > 0 || this.getLevel() === 'simple');
+  }
+
+  getSubject(): Subject {
+    return localStorage.getItem('subject') as Subject;
+  }
+
+  getLevel(): TestLevel {
+    return localStorage.getItem('level') as TestLevel;
+  }
+
+  getSecondsLeft(): number {
+    const startDate = localStorage.getItem('startDate') as unknown as number;
+    const maxTime = this.getLevelMaxTimeInSeconds(this.getLevel());
+
+    return (startDate / 1000 + maxTime) - (Date.now() / 1000);
   }
 
   initializeState(subject: Subject, level: TestLevel): void {
@@ -65,7 +82,7 @@ export class TestStateService {
     this.state.setSubject(subject);
   }
 
-  getLevelMaxTimeInSeconds(level: TestLevel): number {
+  private getLevelMaxTimeInSeconds(level: TestLevel): number {
     switch (level) {
       case 'classic':
         return 210 * 60;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subject, TestLevel } from '../../../components/tasks/models';
+import { TestStateService } from '../test-state.service';
 
 
 @Component({
@@ -27,7 +29,9 @@ export class TestInitializationComponent implements OnInit {
   }
 
   constructor(
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private readonly router: Router,
+    private readonly testStateService: TestStateService
   ) {
   }
 
@@ -44,5 +48,13 @@ export class TestInitializationComponent implements OnInit {
 
   setLevel(level: TestLevel): void {
     this.testSettingsForm.get('level')?.setValue(level);
+  }
+
+  startTesting(): void {
+    const subject = this.testSettingsForm.get('subject')!.value as Subject;
+    const level = this.testSettingsForm.get('level')!.value as TestLevel;
+    this.testStateService.initializeState(subject, level);
+
+    void this.router.navigate(['testing', 'a1']);
   }
 }

@@ -1,0 +1,20 @@
+<div class="main-container">
+  <div class="timer-container">
+    {{ timeLeft }}
+  </div>
+  <div class="tasks-container">
+    <ng-container *ngFor="let task of tasks">
+      <div
+        class="task-item-container"
+        [ngStyle]="{ width: 100 / tasks.length + '%' }"
+        (click)="navigateToTask(task.id)"
+      >
+        <div class="task-item" [ngClass]="{ 'visited': task.visited }"></div>
+        <div class="task-title">{{ task.id }}</div>
+      </div>
+    </ng-container>
+  </div>
+  <task-page>
+
+  </task-page>
+</div>
