@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { MetadataBase } from '../components/tasks/models';
+import { TestAnswer, TestSetItem } from '../pages/centralized-testing/test-state.service';
 
 
 @Injectable()
@@ -13,7 +15,12 @@ export class TasksService {
   ) {
   }
 
-  getTaskMetadata<T>(subject: string, taskCatalog: string, taskId: string): Observable<T> {
-    return this.httpClient.get<T>(`${this.apiPath}/${subject}/${taskCatalog}/${taskId}`)
+  getTaskMetadata<T extends MetadataBase>(subject: string, taskCatalog: string, taskId: string, seed: number): Observable<T> {
+    return this.httpClient.get<T>(`${this.apiPath}/${subject}/${taskCatalog}/${taskId}${seed}`);
+  }
+
+  getFullTestAnswers(subject: string, testSetItems: Array<TestSetItem>): Observable<Array<TestAnswer>> {
+    // TODO: Implement endpoint
+    return of([]);
   }
 }

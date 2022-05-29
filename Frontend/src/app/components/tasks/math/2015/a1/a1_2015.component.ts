@@ -130,7 +130,7 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
 
   private initializeEditMode(): void {
     this.tasksService
-      .getTaskMetadata<A1_2015Metadata>(this.identity.subject, this.identity.catalog, this.identity.id)
+      .getTaskMetadata<A1_2015Metadata>(this.identity.subject, this.identity.catalog, this.identity.id, this.seed)
       .subscribe(value => {
           this.modelConfigurationForm = this.buildForm(value);
           this.patchForm(value);
@@ -141,7 +141,7 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
 
   private initializePlayMode(): void {
     this.tasksService
-      .getTaskMetadata<A1_2015Metadata>(this.identity.subject, this.identity.catalog, this.identity.id)
+      .getTaskMetadata<A1_2015Metadata>(this.identity.subject, this.identity.catalog, this.identity.id, this.seed)
       .subscribe(value => {
           this.modelConfigurationForm = this.buildForm(value);
           this.patchForm(value);

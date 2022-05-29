@@ -21,7 +21,7 @@ export class RfeTextTaskComponent extends TaskComponentBase implements OnInit {
 
   ngOnInit(): void {
     this.tasksService
-      .getTaskMetadata<MetadataBase>(this.identity.subject, this.identity.catalog, this.identity.id)
+      .getTaskMetadata<MetadataBase>(this.identity.subject, this.identity.catalog, this.identity.id, this.seed)
       .subscribe(value => {
         this.model = value;
       });

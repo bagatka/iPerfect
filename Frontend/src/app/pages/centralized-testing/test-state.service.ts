@@ -1,6 +1,17 @@
 import { Injectable } from '@angular/core';
+import { TasksService } from '../../api/tasks.service';
 import { Subject, TestLevel } from '../../components/tasks/models';
 
+export interface TestSetItem {
+  taskId: string;
+  catalog: string;
+  instanceId: number;
+}
+
+export interface TestAnswer {
+  taskId: string;
+  correctAnswer: number;
+}
 
 export class TestState {
   private level?: TestLevel;
@@ -28,23 +39,24 @@ export class TestState {
 export class TestStateService {
   private readonly state: TestState = new TestState();
 
-  constructor() {
+  constructor(
+    private readonly tasksService: TasksService
+  ) {
     const level = localStorage.getItem('level') as TestLevel;
     if (level) {
       const subject = localStorage.getItem('subject') as Subject;
+      const testSetItems = JSON.parse(localStorage.getItem('testSetItems')!) as Array<TestSetItem>;
 
       switch (level) {
         case 'simple':
-          this.state.setLevel(level);
-          this.state.setSubject(subject);
+          this.initializeTest(subject, level, testSetItems);
           break;
         case 'classic':
         case 'fast':
         case 'student':
           const startDate = localStorage.getItem('startDate') as unknown as number;
           if ((startDate / 1000 + this.getLevelMaxTimeInSeconds(level)) > (Date.now() / 1000)) {
-            this.state.setLevel(level);
-            this.state.setSubject(subject);
+            this.initializeTest(subject, level, testSetItems);
             break;
           }
 
@@ -74,12 +86,54 @@ export class TestStateService {
   }
 
   initializeState(subject: Subject, level: TestLevel): void {
+    localStorage.setItem('startDate', Date.now().toString());
     localStorage.setItem('subject', subject);
     localStorage.setItem('level', level);
-    localStorage.setItem('startDate', Date.now().toString());
+    const testSetItems = this.generateTestSet();
+    localStorage.setItem('testSetItems', JSON.stringify(testSetItems));
 
+    this.initializeTest(subject, level, testSetItems);
+  }
+
+  private initializeTest(subject: Subject, level: TestLevel, testSetItems: Array<TestSetItem>): void {
     this.state.setLevel(level);
     this.state.setSubject(subject);
+
+    this.tasksService
+      .getFullTestAnswers(subject, testSetItems)
+      .subscribe(testAnswers => {
+        testAnswers.forEach(answer => this.state.addCorrectAnswer(answer.taskId, answer.correctAnswer))
+      });
+  }
+
+  private generateTestSet(): Array<TestSetItem> {
+    const APartItems: Array<TestSetItem> = Array.from(
+      { length: 18 },
+      (_, i) => {
+        return {
+          catalog: '2015', // TODO: Implement other years
+          taskId: `A${i + 1}`,
+          instanceId: this.getRandom(5)
+        }
+      }
+    );
+
+    const BPartItems: Array<TestSetItem> = Array.from(
+      { length: 12 },
+      (_, i) => {
+        return {
+          catalog: '2015', // TODO: Implement other years
+          taskId: `B${i + 1}`,
+          instanceId: this.getRandom(5)
+        }
+      }
+    );
+
+    return [...APartItems, ...BPartItems];
+  }
+
+  private getRandom(max: number): number {
+    return Math.floor(Math.random() * max);
   }
 
   private getLevelMaxTimeInSeconds(level: TestLevel): number {

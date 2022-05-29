@@ -18,6 +18,7 @@ export interface Task {
 export abstract class TaskComponentBase {
   protected abstract identity: Task;
   @Input() mode: TaskComponentMode = TaskComponentMode.Play;
+  @Input() seed: number = 0;
 
   get TaskComponentMode(): typeof TaskComponentMode {
     return TaskComponentMode;
