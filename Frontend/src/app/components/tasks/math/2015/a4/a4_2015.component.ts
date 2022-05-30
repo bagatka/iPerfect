@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../../../../../api/tasks.service';
 import { MetadataBase } from '../../../models';
-import { Task, TaskComponentBase } from '../../../task-component-base.directive';
+import { TaskComponentBase } from '../../../task-component-base.directive';
 
 
 @Component({
@@ -10,12 +10,6 @@ import { Task, TaskComponentBase } from '../../../task-component-base.directive'
   styleUrls: ['./a4_2015.component.scss']
 })
 export class A4_2015Component extends TaskComponentBase implements OnInit {
-  protected identity: Task = {
-    id: 'A4',
-    catalog: '2015',
-    subject: 'math'
-  };
-
   model?: MetadataBase;
 
   constructor(
@@ -25,8 +19,12 @@ export class A4_2015Component extends TaskComponentBase implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subject = 'math';
+    this.id = 'A4';
+    this.catalog = '2015';
+
     this.tasksService
-      .getTaskMetadata<MetadataBase>(this.identity.subject, this.identity.catalog, this.identity.id, this.seed)
+      .getTaskMetadata<MetadataBase>(this.subject, this.catalog, this.id, this.seed)
       .subscribe(value => {
         this.model = value;
       });

@@ -1,11 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, TestLevel } from '../../../components/tasks/models';
-import { TestStateService } from '../test-state.service';
+import { TestSetItem, TestStateService } from '../test-state.service';
 
 
-export interface TasksProgressItem {
-  id: string;
+export interface TaskProgressItem extends TestSetItem {
   visited: boolean;
 }
 
@@ -19,7 +18,16 @@ export class TestingFlowComponent implements OnInit, OnDestroy {
   timeLeft!: string;
   updateInterval!: NodeJS.Timeout;
 
-  tasks: Array<TasksProgressItem> = Array.from({length: 30}, (_, i) => ({id: `A${i + 1}`, visited: i % 2 === 0}));
+  tasks: Array<TaskProgressItem> = [];
+
+  get showAllTasks(): boolean {
+    return this.level === 'simple' || this.level === 'classic';
+  }
+
+  get currentTask(): TestSetItem {
+    const taskId = this.route.snapshot.paramMap.get('taskId');
+    return this.tasks.find(item => item.taskId === taskId)!;
+  }
 
   constructor(
     private readonly router: Router,
@@ -29,6 +37,7 @@ export class TestingFlowComponent implements OnInit, OnDestroy {
     if (this.testStateService.isActiveSession()) {
       this.subject = testStateService.getSubject();
       this.level = testStateService.getLevel();
+      this.tasks = testStateService.getTestSetItems().map(item => ({ ...item, visited: false }));
     }
   }
 
@@ -45,7 +54,7 @@ export class TestingFlowComponent implements OnInit, OnDestroy {
   }
 
   navigateToTask(taskId: string): void {
-    void this.router.navigate(['testing', taskId])
+    void this.router.navigate(['testing', taskId]);
   }
 
   private calculateTimeLeft(): string {
@@ -62,7 +71,7 @@ export class TestingFlowComponent implements OnInit, OnDestroy {
     const hoursLeft = Math.floor(allSecondsLeft / 60 / 60);
     const minutesLeft = Math.floor((allSecondsLeft - 60 * 60 * hoursLeft) / 60);
     const secondsLeft = Math.floor((allSecondsLeft - 60 * 60 * hoursLeft - 60 * minutesLeft));
-    return `${hoursLeft}:${minutesLeft}:${secondsLeft}`
+    return `${hoursLeft}:${minutesLeft}:${secondsLeft}`;
   }
 
   private redirectToFinalPage(): void {

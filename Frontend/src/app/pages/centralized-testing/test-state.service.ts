@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { TasksService } from '../../api/tasks.service';
 import { Subject, TestLevel } from '../../components/tasks/models';
 
+
 export interface TestSetItem {
   taskId: string;
   catalog: string;
-  instanceId: number;
+  seed: number;
 }
 
 export interface TestAnswer {
@@ -78,6 +79,10 @@ export class TestStateService {
     return localStorage.getItem('level') as TestLevel;
   }
 
+  getTestSetItems(): Array<TestSetItem> {
+    return JSON.parse(localStorage.getItem('testSetItems')!) as unknown as Array<TestSetItem>;
+  }
+
   getSecondsLeft(): number {
     const startDate = localStorage.getItem('startDate') as unknown as number;
     const maxTime = this.getLevelMaxTimeInSeconds(this.getLevel());
@@ -86,10 +91,11 @@ export class TestStateService {
   }
 
   initializeState(subject: Subject, level: TestLevel): void {
+    const testSetItems = this.generateTestSet();
+
     localStorage.setItem('startDate', Date.now().toString());
     localStorage.setItem('subject', subject);
     localStorage.setItem('level', level);
-    const testSetItems = this.generateTestSet();
     localStorage.setItem('testSetItems', JSON.stringify(testSetItems));
 
     this.initializeTest(subject, level, testSetItems);
@@ -113,7 +119,7 @@ export class TestStateService {
         return {
           catalog: '2015', // TODO: Implement other years
           taskId: `A${i + 1}`,
-          instanceId: this.getRandom(5)
+          seed: this.getRandom(5)
         }
       }
     );
@@ -124,7 +130,7 @@ export class TestStateService {
         return {
           catalog: '2015', // TODO: Implement other years
           taskId: `B${i + 1}`,
-          instanceId: this.getRandom(5)
+          seed: this.getRandom(5)
         }
       }
     );

@@ -8,17 +8,13 @@ export enum TaskComponentMode {
   Play
 }
 
-export interface Task {
-  id: string;
-  catalog: string;
-  subject: Subject;
-}
-
 @Directive()
 export abstract class TaskComponentBase {
-  protected abstract identity: Task;
   @Input() mode: TaskComponentMode = TaskComponentMode.Play;
   @Input() seed: number = 0;
+  @Input() id!: string;
+  @Input() subject!: Subject;
+  @Input() catalog!: string;
 
   get TaskComponentMode(): typeof TaskComponentMode {
     return TaskComponentMode;

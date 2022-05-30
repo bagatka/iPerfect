@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TasksService } from '../../../../../api/tasks.service';
 import { MetadataBase } from '../../../models';
 import { CoordinateLine, Stroke } from '../../../shared/rfe-coordinate-line/rfe-coordinate-line.model';
-import { Task, TaskComponentBase, TaskComponentMode } from '../../../task-component-base.directive';
+import { TaskComponentBase, TaskComponentMode } from '../../../task-component-base.directive';
 
 
 interface A1_2015Metadata extends MetadataBase {
@@ -16,12 +16,6 @@ interface A1_2015Metadata extends MetadataBase {
   styleUrls: ['./a1_2015.component.scss']
 })
 export class A1_2015Component extends TaskComponentBase implements OnInit {
-  protected identity: Task = {
-    id: 'A1',
-    catalog: '2015',
-    subject: 'math'
-  };
-
   viewReady = false;
   modelConfigurationForm!: FormGroup;
 
@@ -53,6 +47,10 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subject = 'math';
+    this.id = 'A1';
+    this.catalog = '2015';
+
     switch (this.mode) {
       case TaskComponentMode.Create:
         this.initializeCreateState()
@@ -130,7 +128,7 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
 
   private initializeEditMode(): void {
     this.tasksService
-      .getTaskMetadata<A1_2015Metadata>(this.identity.subject, this.identity.catalog, this.identity.id, this.seed)
+      .getTaskMetadata<A1_2015Metadata>(this.subject, this.catalog, this.id, this.seed)
       .subscribe(value => {
           this.modelConfigurationForm = this.buildForm(value);
           this.patchForm(value);
@@ -141,7 +139,7 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
 
   private initializePlayMode(): void {
     this.tasksService
-      .getTaskMetadata<A1_2015Metadata>(this.identity.subject, this.identity.catalog, this.identity.id, this.seed)
+      .getTaskMetadata<A1_2015Metadata>(this.subject, this.catalog, this.id, this.seed)
       .subscribe(value => {
           this.modelConfigurationForm = this.buildForm(value);
           this.patchForm(value);

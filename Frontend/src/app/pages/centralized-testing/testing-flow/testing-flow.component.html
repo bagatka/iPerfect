@@ -2,19 +2,25 @@
   <div class="timer-container">
     {{ timeLeft }}
   </div>
-  <div class="tasks-container">
+  <div class="tasks-container" *ngIf="!showAllTasks">
     <ng-container *ngFor="let task of tasks">
       <div
         class="task-item-container"
         [ngStyle]="{ width: 100 / tasks.length + '%' }"
-        (click)="navigateToTask(task.id)"
+        (click)="navigateToTask(task.taskId)"
       >
         <div class="task-item" [ngClass]="{ 'visited': task.visited }"></div>
-        <div class="task-title">{{ task.id }}</div>
+        <div class="task-title">{{ task.taskId }}</div>
       </div>
     </ng-container>
   </div>
-  <task-page>
-
-  </task-page>
+  <ng-container *ngIf="showAllTasks; else singleTask">
+    <ng-container *ngFor="let item of tasks">
+      <task-page [taskId]="item.taskId" [taskCatalog]="item.catalog" [taskSeed]="item.seed"></task-page>
+    </ng-container>
+  </ng-container>
+  <ng-template #singleTask>
+    <task-page [taskId]="currentTask.taskId" [taskCatalog]="currentTask.catalog" [taskSeed]="currentTask.seed">
+    </task-page>
+  </ng-template>
 </div>

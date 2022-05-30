@@ -25,7 +25,7 @@ export class TasksServerlessService extends TasksService {
   override getFullTestAnswers(subject: Subject, testSetItems: Array<TestSetItem>): Observable<Array<TestAnswer>> {
     const observables = testSetItems.map(
       item =>
-        this.getTaskMetadata(subject, item.catalog, item.taskId, item.instanceId)
+        this.getTaskMetadata(subject, item.catalog, item.taskId, item.seed)
     );
 
     return combineLatest(observables)
