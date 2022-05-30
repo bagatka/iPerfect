@@ -12,6 +12,7 @@ import { TaskPageComponent } from './task-page/task-page.component';
 import { TestInitializationComponent } from './test-initialization/test-initialization.component';
 import { TestingFlowComponent } from './testing-flow/testing-flow.component';
 import { TestingResultsComponent } from './testing-results/testing-results.component';
+import { TestAnswerSheetComponent } from './test-answer-sheet/test-answer-sheet.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TestingResultsComponent } from './testing-results/testing-results.compo
     TaskPageComponent,
     TestInitializationComponent,
     TestingFlowComponent,
-    TestingResultsComponent
+    TestingResultsComponent,
+    TestAnswerSheetComponent
   ],
   imports: [
     CommonModule,

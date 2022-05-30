@@ -38,6 +38,17 @@ export class TestingFlowComponent implements OnInit, OnDestroy {
       this.subject = testStateService.getSubject();
       this.level = testStateService.getLevel();
       this.tasks = testStateService.getTestSetItems().map(item => ({ ...item, visited: false }));
+      const visitedTasks = testStateService.getVisitedTasks();
+      this.tasks = this.tasks.map(task => {
+        if (visitedTasks.find(visitedTaskId => visitedTaskId === task.taskId)) {
+          return {
+            ...task,
+            visited: true
+          };
+        }
+
+        return task;
+      })
     }
   }
 
@@ -45,8 +56,23 @@ export class TestingFlowComponent implements OnInit, OnDestroy {
     if (!this.testStateService.isActiveSession()) {
       this.redirectToFinalPage();
     }
+
+    const currentTask = this.route.snapshot.paramMap.get('taskId')!;
+
+    if (this.tasks.find(item => item.taskId === currentTask)!.visited) {
+      const targetTask = this.tasks.find(item => !item.visited);
+
+      if (targetTask) {
+        this.navigateToTask(targetTask.taskId);
+      } else {
+        this.redirectToFinalPage();
+      }
+    }
+
     this.timeLeft = this.calculateTimeLeft();
     this.updateInterval = setInterval(() => this.timeLeft = this.calculateTimeLeft(), 1000);
+    this.testStateService.addVisitedTask(currentTask);
+    this.tasks.find(item => item.taskId === currentTask)!.visited = true;
   }
 
   ngOnDestroy(): void {
@@ -54,6 +80,15 @@ export class TestingFlowComponent implements OnInit, OnDestroy {
   }
 
   navigateToTask(taskId: string): void {
+    if (
+      (this.level === 'student' || this.level === 'fast')
+      && this.tasks.find(item => item.taskId === taskId)!.visited
+    ) {
+      return;
+    }
+
+    this.testStateService.addVisitedTask(taskId);
+    this.tasks.find(item => item.taskId === taskId)!.visited = true;
     void this.router.navigate(['testing', taskId]);
   }
 

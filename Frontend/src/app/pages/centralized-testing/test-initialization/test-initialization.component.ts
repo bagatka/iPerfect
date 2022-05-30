@@ -55,6 +55,6 @@ export class TestInitializationComponent implements OnInit {
     const level = this.testSettingsForm.get('level')!.value as TestLevel;
     this.testStateService.initializeState(subject, level);
 
-    void this.router.navigate(['testing', 'a1']);
+    void this.router.navigate(['testing', 'A1']);
   }
 }

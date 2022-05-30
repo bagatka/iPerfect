@@ -1,4 +1,90 @@
+@use '@angular/material' as mat;
 @use 'colors';
+
+@include mat.core();
+
+$main-palette: (
+  50 : #e0fdec,
+  100 : #b3facf,
+  200 : #80f7af,
+  300 : #4df38f,
+  400 : #26f177,
+  500 : #00ee5f,
+  600 : #00ec57,
+  700 : #00e94d,
+  800 : #00e743,
+  900 : #00e232,
+  A100 : #ffffff,
+  A200 : #d6ffdd,
+  A400 : #a3ffb2,
+  A700 : #8aff9c,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$accent-palette: (
+  50 : #f5e9fa,
+  100 : #e6c9f2,
+  200 : #d6a5ea,
+  300 : #c680e2,
+  400 : #b965db,
+  500 : #ad4ad5,
+  600 : #a643d0,
+  700 : #9c3aca,
+  800 : #9332c4,
+  900 : #8322ba,
+  A100 : #fbf5ff,
+  A200 : #e7c2ff,
+  A400 : #d48fff,
+  A700 : #ca75ff,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$iPerfect-primary: mat.define-palette($main-palette);
+$iPerfect-accent: mat.define-palette($accent-palette);
+
+$iPerfect-warn: mat.define-palette(mat.$red-palette);
+
+
+$iPerfect-theme: mat.define-light-theme((
+  color: (
+    primary: $iPerfect-primary,
+    accent: $iPerfect-accent,
+    warn: $iPerfect-warn,
+  )
+));
+
+@include mat.all-component-themes($iPerfect-theme);
+
 @import '~normalize.css';
 
 html, body {

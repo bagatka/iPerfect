@@ -1,5 +1,22 @@
 <ng-container [ngSwitch]="taskId">
-  <a1_2015 *ngSwitchCase="'A1'" [mode]="TaskComponentMode.Play" [id]="taskId" [catalog]="taskCatalog" [seed]="taskSeed"></a1_2015>
-  <a4_2015 *ngSwitchCase="'A4'" [mode]="TaskComponentMode.Play" [id]="taskId" [catalog]="taskCatalog" [seed]="taskSeed"></a4_2015>
-  <rfe-text-task *ngSwitchDefault [mode]="TaskComponentMode.Play" [id]="taskId" [catalog]="taskCatalog" [seed]="taskSeed"></rfe-text-task>
+  <a1_2015
+    *ngSwitchCase="'A1'"
+    [mode]="TaskComponentMode.Play"
+    [catalog]="taskCatalog"
+    [seed]="taskSeed"
+  ></a1_2015>
+  <a4_2015
+    *ngSwitchCase="'A4'"
+    [mode]="TaskComponentMode.Play"
+    [catalog]="taskCatalog"
+    [seed]="taskSeed"
+  ></a4_2015>
+  <rfe-text-task
+    *ngSwitchDefault
+    [mode]="TaskComponentMode.Play"
+    [subject]="taskSubject"
+    [id]="taskId"
+    [catalog]="taskCatalog"
+    [seed]="taskSeed"
+  ></rfe-text-task>
 </ng-container>

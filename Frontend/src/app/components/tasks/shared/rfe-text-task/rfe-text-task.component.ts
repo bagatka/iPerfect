@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { TasksService } from '../../../../api/tasks.service';
 import { MetadataBase } from '../../models';
 import { TaskComponentBase } from '../../task-component-base.directive';
@@ -8,13 +8,19 @@ import { TaskComponentBase } from '../../task-component-base.directive';
   templateUrl: './rfe-text-task.component.html',
   styleUrls: ['./rfe-text-task.component.scss']
 })
-export class RfeTextTaskComponent extends TaskComponentBase implements OnInit {
+export class RfeTextTaskComponent extends TaskComponentBase implements OnInit, OnChanges {
   model?: MetadataBase;
 
   constructor(
     private readonly tasksService: TasksService
   ) {
     super();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.subject) {
+      this.ngOnInit();
+    }
   }
 
   ngOnInit(): void {

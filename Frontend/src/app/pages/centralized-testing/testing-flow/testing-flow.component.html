@@ -7,20 +7,25 @@
       <div
         class="task-item-container"
         [ngStyle]="{ width: 100 / tasks.length + '%' }"
+        [ngClass]="{ 'visited': task.visited }"
         (click)="navigateToTask(task.taskId)"
       >
-        <div class="task-item" [ngClass]="{ 'visited': task.visited }"></div>
+        <div class="task-item"></div>
         <div class="task-title">{{ task.taskId }}</div>
       </div>
     </ng-container>
   </div>
   <ng-container *ngIf="showAllTasks; else singleTask">
     <ng-container *ngFor="let item of tasks">
-      <task-page [taskId]="item.taskId" [taskCatalog]="item.catalog" [taskSeed]="item.seed"></task-page>
+      <task-page [taskSubject]="subject" [taskId]="item.taskId" [taskCatalog]="item.catalog" [taskSeed]="item.seed"></task-page>
     </ng-container>
   </ng-container>
   <ng-template #singleTask>
-    <task-page [taskId]="currentTask.taskId" [taskCatalog]="currentTask.catalog" [taskSeed]="currentTask.seed">
+    <task-page [taskSubject]="subject" [taskId]="currentTask.taskId" [taskCatalog]="currentTask.catalog" [taskSeed]="currentTask.seed">
     </task-page>
   </ng-template>
 </div>
+
+<button class="answers-sheet-button">
+  Открыть бланк ответов
+</button>
