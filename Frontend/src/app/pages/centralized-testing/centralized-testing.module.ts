@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 import { RfeTasksModuleModule } from '../../components/tasks/rfe-tasks-module.module';
 
 import { CentralizedTestingRoutingModule } from './centralized-testing-routing.module';
@@ -30,7 +31,8 @@ import { TestAnswerSheetComponent } from './test-answer-sheet/test-answer-sheet.
     HttpClientModule,
     CentralizedTestingRoutingModule,
     ReactiveFormsModule,
-    RfeTasksModuleModule
+    RfeTasksModuleModule,
+    MatDialogModule
   ],
   providers: [
     TestStateService

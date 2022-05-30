@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  width: 900px;
+  height: 600px;
+
+  .title {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 20px;
+  }
+
+  .answers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .a-part-answers {
+      display: flex;
+      flex-direction: row;
+      gap: 2px;
+
+      span {
+        text-align: center;
+      }
+    }
+  }
+}

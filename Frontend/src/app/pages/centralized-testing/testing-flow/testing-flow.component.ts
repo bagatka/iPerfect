@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, TestLevel } from '../../../components/tasks/models';
+import { TestAnswerSheetComponent } from '../test-answer-sheet/test-answer-sheet.component';
 import { TestSetItem, TestStateService } from '../test-state.service';
 
 
@@ -32,6 +34,7 @@ export class TestingFlowComponent implements OnInit, OnDestroy {
   constructor(
     private readonly router: Router,
     private readonly route: ActivatedRoute,
+    public dialog: MatDialog,
     private readonly testStateService: TestStateService
   ) {
     if (this.testStateService.isActiveSession()) {
@@ -90,6 +93,11 @@ export class TestingFlowComponent implements OnInit, OnDestroy {
     this.testStateService.addVisitedTask(taskId);
     this.tasks.find(item => item.taskId === taskId)!.visited = true;
     void this.router.navigate(['testing', taskId]);
+  }
+
+  openAnswersSheetDialog(): void {
+    this.dialog
+      .open(TestAnswerSheetComponent);
   }
 
   private calculateTimeLeft(): string {

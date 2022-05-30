@@ -1,0 +1,20 @@
+<div class="title">
+  Бланк ответов
+</div>
+
+<div class="answers-container">
+  <div class="a-part-answers">
+    <ng-container *ngFor="let _ of getArray(30); let index = index">
+      <span>A{{ index + 1 }}</span>
+    </ng-container>
+  </div>
+
+  <div class="a-part-answers">
+    <ng-container>
+      <span></span>
+    </ng-container>
+  </div>
+
+  <div class="b-part-answers">
+  </div>
+</div>
