@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { RfeCheckboxComponent } from '../../components/rfe-checkbox/rfe-checkbox.component';
 import { RfeTasksModuleModule } from '../../components/tasks/rfe-tasks-module.module';
 
 import { CentralizedTestingRoutingModule } from './centralized-testing-routing.module';
@@ -24,7 +25,8 @@ import { TestAnswerSheetComponent } from './test-answer-sheet/test-answer-sheet.
     TestInitializationComponent,
     TestingFlowComponent,
     TestingResultsComponent,
-    TestAnswerSheetComponent
+    TestAnswerSheetComponent,
+    RfeCheckboxComponent
   ],
   imports: [
     CommonModule,

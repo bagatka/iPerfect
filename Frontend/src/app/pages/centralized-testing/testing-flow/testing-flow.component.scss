@@ -48,6 +48,16 @@
         text-align: center;
       }
     }
+
+    .task-container {
+      border: colors.$mainColor 1px solid;
+      padding: 10px 10px 40px 10px;
+      margin-bottom: 20px;
+
+      .task-title {
+        font-size: 32px;
+      }
+    }
   }
 
   $answersSheetButtonWidth: 320px;

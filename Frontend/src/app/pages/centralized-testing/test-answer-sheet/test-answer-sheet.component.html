@@ -4,17 +4,50 @@
 
 <div class="answers-container">
   <div class="a-part-answers">
-    <ng-container *ngFor="let _ of getArray(30); let index = index">
-      <span>A{{ index + 1 }}</span>
-    </ng-container>
-  </div>
-
-  <div class="a-part-answers">
-    <ng-container>
-      <span></span>
+    <ng-container *ngFor="let answersControl of APartAnswerControlsArray; let index = index">
+      <div class="task-answers-container">
+        <div class="answer-title">A{{ index + 1 }}</div>
+        <div class="answer-checkboxes-container">
+          <input
+            type="checkbox"
+            [formControl]="answersControl"
+            [disabled]="answersControl.value.length > 0"
+            [checked]="hasAnswer(answersControl.value, '1')"
+            (select)="answersControl.value.push('1')"
+          />
+          <rfe-checkbox
+            type="checkbox"
+            [formControl]="answersControl"
+            [disabled]="answersControl.value.length > 0"
+          />
+          <input
+            type="checkbox"
+            [formControl]="answersControl"
+            [disabled]="answersControl.value.length > 0"
+            [checked]="hasAnswer(answersControl.value, '3')"
+            (select)="answersControl.value.push('3')"
+          />
+          <input
+            type="checkbox"
+            [formControl]="answersControl"
+            [disabled]="answersControl.value.length > 0"
+            [checked]="hasAnswer(answersControl.value, '4')"
+            (select)="answersControl.value.push('4')"
+          />
+          <input
+            type="checkbox"
+            [formControl]="answersControl"
+            [disabled]="answersControl.value.length > 0"
+            [checked]="hasAnswer(answersControl.value, '5')"
+            (select)="answersControl.value.push('5')"
+          />
+        </div>
+      </div>
     </ng-container>
   </div>
 
   <div class="b-part-answers">
   </div>
+
+  {{ form.value | json }}
 </div>

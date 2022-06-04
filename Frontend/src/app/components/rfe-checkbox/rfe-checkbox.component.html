@@ -1,0 +1,13 @@
+<div
+  class="checkbox-container"
+  (click)="onInputChange(!checked)"
+>
+  <div
+    class="sg-checkbox"
+    tabindex="0"
+    [ngClass]="{ 'checked': checked, 'disabled': disabled, 'invalid': invalid }"
+    (keydown.enter)="onInputChange(!checked)"
+  >
+    <div class="icon-check icon-color-white"></div>
+  </div>
+</div>

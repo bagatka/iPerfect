@@ -1,0 +1,67 @@
+@use '~src/colors';
+
+$primaryColor: colors.$mainColor;
+$checkboxBackgroundColor: colors.$accentColor;
+$primaryHoverColor: rgba($primaryColor, 0.1);
+$primaryDisabledColor: grey;
+
+.checkbox-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+
+  &>.sg-checkbox {
+    width: 23px;
+    height: 23px;
+    min-width: 23px;
+    min-height: 23px;
+    border: 1px solid ;
+    border-radius: 8px;
+    display: flex;
+    cursor: pointer;
+    user-select: none;
+    align-items: center;
+    justify-content: center;
+
+    &:not(.checked) {
+      background: $checkboxBackgroundColor;
+      border-color: $primaryDisabledColor;
+
+      &:hover:not(.disabled) {
+        background: $primaryDisabledColor;
+      }
+
+      &.disabled {
+        background: $checkboxBackgroundColor;
+        border-color: $primaryDisabledColor;
+      }
+    }
+
+    &.checked {
+      background: $primaryColor;
+      border-color: $primaryColor;
+
+      &:hover:not(.disabled) {
+        background: $primaryHoverColor;
+
+        &:not(.invalid) {
+          border-color: $primaryHoverColor;
+        }
+      }
+
+      &.disabled {
+        background: darkgray;
+        border-color: gray;
+      }
+    }
+
+    &.invalid {
+      border-color: red;
+    }
+
+    &.disabled {
+      cursor: default;
+    }
+  }
+}

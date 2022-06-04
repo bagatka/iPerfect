@@ -17,7 +17,10 @@
   </div>
   <ng-container *ngIf="showAllTasks; else singleTask">
     <ng-container *ngFor="let item of tasks">
-      <task-page [taskSubject]="subject" [taskId]="item.taskId" [taskCatalog]="item.catalog" [taskSeed]="item.seed"></task-page>
+      <div class="task-container">
+        <span class="task-title">{{ item.taskId }}</span>
+        <task-page [taskSubject]="subject" [taskId]="item.taskId" [taskCatalog]="item.catalog" [taskSeed]="item.seed"></task-page>
+      </div>
     </ng-container>
   </ng-container>
   <ng-template #singleTask>
