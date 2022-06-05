@@ -35,7 +35,7 @@ export class TasksServerlessService extends TasksService {
             items.map(
               (item, index) => ({
                 taskId: testSetItems[index].taskId,
-                correctAnswer: item.correctAnswer
+                correctAnswer: item?.correctAnswer
               } as TestAnswer)
             )
           )

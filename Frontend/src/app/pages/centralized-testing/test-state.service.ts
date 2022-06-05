@@ -32,15 +32,24 @@ export class TestState {
   private readonly visitedTasks: Array<string> = new Array<string>();
   private APartCancellations: Array<Cancellation> = new Array<Cancellation>();
   private BPartCancellations: Array<Cancellation> = new Array<Cancellation>();
-  private result?: TestResult;
+  private _result?: TestResult;
+
+  get results(): TestResult | undefined {
+    return this._result;
+  }
 
   constructor(
-    userAnswers?: Map<string, Array<string>>
+    userAnswers?: Map<string, Array<string>>,
+    testResults?: TestResult
   ) {
     if (userAnswers) {
       this.userAnswers = userAnswers;
     } else {
       this.userAnswers = new Map<string, Array<string>>();
+    }
+
+    if (testResults) {
+      this._result = testResults;
     }
   }
 
@@ -107,7 +116,7 @@ export class TestState {
   }
 
   isTestCompleted(): boolean {
-    return !!this.result;
+    return !!this._result;
   }
 
   calculateResult(startTime: number): TestResult {
@@ -139,12 +148,12 @@ export class TestState {
       }
     }
 
-    this.result = {
+    this._result = {
       timeSpent,
       correctAnswersCount
     };
 
-    return this.result;
+    return this._result;
   }
 }
 
@@ -164,9 +173,12 @@ export class TestStateService {
         localStorage.getItem('userAnswers')!,
         this.mapJsonReviver
       ) as Map<string, Array<string>>;
+
+      const results = JSON.parse(localStorage.getItem('results')!) as TestResult;
+
       const APartCancellations = JSON.parse(localStorage.getItem('APartCancellations')!) as Array<Cancellation>;
       const BPartCancellations = JSON.parse(localStorage.getItem('BPartCancellations')!) as Array<Cancellation>;
-      this.state = new TestState(userAnswers);
+      this.state = new TestState(userAnswers, results);
       this.state.setAPartCancellations(APartCancellations);
       this.state.setBPartCancellations(BPartCancellations);
 
@@ -190,7 +202,7 @@ export class TestStateService {
   }
 
   isActiveSession(): boolean {
-    return this.getSubject() && this.getLevel() && (this.getSecondsLeft() > 0 || this.getLevel() === 'simple');
+    return (this.getSubject() && this.getLevel() && (this.getSecondsLeft() > 0 || this.getLevel() === 'simple')) && !this.state.isTestCompleted();
   }
 
   getSubject(): Subject {
@@ -267,6 +279,19 @@ export class TestStateService {
 
   getBPartCancellations(): Array<Cancellation> {
     return this.state.getBPartCancellations();
+  }
+
+  completeTest(): TestResult {
+    const startDate = localStorage.getItem('startDate') as unknown as number;
+
+    const results = this.state.calculateResult(startDate);
+    localStorage.setItem('results', JSON.stringify(results));
+
+    return results;
+  }
+
+  getResults(): TestResult | undefined {
+    return this.state.results;
   }
 
   private initializeTest(
