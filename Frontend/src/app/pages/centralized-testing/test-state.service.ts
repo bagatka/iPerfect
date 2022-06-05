@@ -105,6 +105,47 @@ export class TestState {
   getBPartCancellations(): Array<Cancellation> {
     return this.BPartCancellations;
   }
+
+  isTestCompleted(): boolean {
+    return !!this.result;
+  }
+
+  calculateResult(startTime: number): TestResult {
+    const secondsSpent = (Date.now() - startTime) / 1000;
+
+    const hoursLeft = Math.floor(secondsSpent / 60 / 60);
+    const minutesLeft = Math.floor((secondsSpent - 60 * 60 * hoursLeft) / 60);
+    const secondsLeft = Math.floor((secondsSpent - 60 * 60 * hoursLeft - 60 * minutesLeft));
+    const timeSpent = `${hoursLeft}:${minutesLeft}:${secondsLeft}`;
+
+    this.APartCancellations.forEach(item => {
+      const userAnswers = this.userAnswers.get(item.taskId);
+
+      if (userAnswers) {
+        const targetAnswers = userAnswers.filter(ans => ans !== item.answerToCancel);
+        this.userAnswers.set(item.taskId, targetAnswers);
+      }
+    });
+
+    this.BPartCancellations.forEach(item => {
+      this.userAnswers.set(item.taskId, [item.answerToCancel]);
+    });
+
+    let correctAnswersCount = 0;
+    for (const [taskId, correctAnswer] of this.correctAnswers.entries()) {
+      const userAnswers = this.userAnswers.get(taskId);
+      if (userAnswers && userAnswers.length === 1 && userAnswers[0] === correctAnswer) {
+        correctAnswersCount++;
+      }
+    }
+
+    this.result = {
+      timeSpent,
+      correctAnswersCount
+    };
+
+    return this.result;
+  }
 }
 
 @Injectable()
@@ -119,7 +160,10 @@ export class TestStateService {
       const subject = localStorage.getItem('subject') as Subject;
       const testSetItems = JSON.parse(localStorage.getItem('testSetItems')!) as Array<TestSetItem>;
       const visitedTasks = JSON.parse(localStorage.getItem('visitedTasks')!) as Array<string>;
-      const userAnswers = JSON.parse(localStorage.getItem('userAnswers')!, this.mapJsonReviver) as Map<string, Array<string>>;
+      const userAnswers = JSON.parse(
+        localStorage.getItem('userAnswers')!,
+        this.mapJsonReviver
+      ) as Map<string, Array<string>>;
       const APartCancellations = JSON.parse(localStorage.getItem('APartCancellations')!) as Array<Cancellation>;
       const BPartCancellations = JSON.parse(localStorage.getItem('BPartCancellations')!) as Array<Cancellation>;
       this.state = new TestState(userAnswers);
