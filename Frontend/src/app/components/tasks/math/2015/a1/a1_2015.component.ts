@@ -119,7 +119,7 @@ export class A1_2015Component extends TaskComponentBase implements OnInit {
       },
       taskText: '',
       answers: Array.from({ length: 5 }, (_, index) => `${index}`),
-      correctAnswer: 0
+      correctAnswer: '0'
     };
 
     this.modelConfigurationForm = this.buildForm(model);

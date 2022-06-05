@@ -1,7 +1,7 @@
 export interface MetadataBase {
   taskText: string;
   answers: Array<string>;
-  correctAnswer: number;
+  correctAnswer: string;
 }
 
 export type Subject = 'math' | 'physics';

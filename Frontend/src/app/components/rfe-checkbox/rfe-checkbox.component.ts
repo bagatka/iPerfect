@@ -12,6 +12,7 @@ export class RfeCheckboxComponent implements ControlValueAccessor {
   disabled: boolean = false;
   invalid: boolean = false;
 
+  @Input() forceDisabled: boolean = false;
   @Output() inputChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private onChange: ((_: unknown) => void);
@@ -29,7 +30,7 @@ export class RfeCheckboxComponent implements ControlValueAccessor {
   }
 
   @Input() set checkboxValue(value: boolean) {
-    if (value === undefined || this.disabled || this.ngControl) {
+    if (value === undefined || this.disabled || this.forceDisabled || this.ngControl) {
       return;
     }
 
@@ -55,7 +56,7 @@ export class RfeCheckboxComponent implements ControlValueAccessor {
   }
 
   onInputChange(checked: boolean): void {
-    if (!this.disabled) {
+    if (!this.disabled && !this.forceDisabled) {
       this.checked = checked;
 
       this.onChange(checked);

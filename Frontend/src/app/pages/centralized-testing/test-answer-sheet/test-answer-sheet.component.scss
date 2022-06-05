@@ -3,7 +3,8 @@
 :host {
   display: block;
   width: 1000px;
-  height: 600px;
+  height: 690px;
+  user-select: none;
 
   .title {
     text-align: center;
@@ -21,6 +22,22 @@
       display: flex;
       flex-direction: row;
       gap: 4px;
+
+      .answers-legend {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 4px;
+        margin-right: 6px;
+
+        div {
+          height: 25px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
 
       .task-answers-container {
         display: flex;
@@ -40,6 +57,130 @@
           display: flex;
           flex-direction: column;
           gap: 4px;
+        }
+      }
+    }
+
+    .container-title {
+      margin: 24px 0 8px;
+    }
+
+    .a-part-cancellation-container {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 10px;
+
+      .a-part-cancellation-item-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 2px;
+
+        .cancellation-label {
+          font-size: 10px;
+          margin-bottom: 6px;
+        }
+
+        .cancellation-dash {
+          margin-left: 5px;
+          font-weight: 700;
+        }
+
+        .cancellation-details-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+
+          .cancel-answer-input {
+            width: 25px
+          }
+        }
+      }
+    }
+
+    .b-part-answers {
+      margin-top: 36px;
+      height: 200px;
+      width: 800px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      .b-answer-container {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+        align-items: center;
+
+        span {
+          font-size: 16px;
+          font-weight: 700;
+          width: 40px;
+        }
+
+        input {
+          width: 300px;
+        }
+      }
+    }
+
+    .b-part-cancellation-container {
+      display: flex;
+      flex-direction: column;
+
+      .b-part-cancellation-item-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 12px;
+
+        .cancellation-dash {
+          font-weight: 800;
+        }
+
+        .edit-answer-input {
+          width: 300px;
+        }
+      }
+    }
+
+    .task-type-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .task-id-input {
+      width: 50px;
+    }
+
+    .button-container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        background-color: colors.$accentColor;
+        color: colors.$lightColor;
+        padding: 8px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(colors.$accentColor, 0.9);
+        }
+
+        &:active {
+          transform: scale(1.05);
+          background-color: rgba(colors.$accentColor, 0.7);
         }
       }
     }

@@ -11,7 +11,7 @@ $primaryDisabledColor: grey;
   flex-wrap: nowrap;
   align-items: center;
 
-  &>.sg-checkbox {
+  &>.checkbox {
     width: 23px;
     height: 23px;
     min-width: 23px;
@@ -24,23 +24,31 @@ $primaryDisabledColor: grey;
     align-items: center;
     justify-content: center;
 
+    img {
+      opacity: 0;
+    }
+
     &:not(.checked) {
-      background: $checkboxBackgroundColor;
-      border-color: $primaryDisabledColor;
+      background: none;
+      border-color: colors.$darkColor;
 
       &:hover:not(.disabled) {
-        background: $primaryDisabledColor;
+        img {
+          opacity: 0.3;
+        }
       }
 
       &.disabled {
-        background: $checkboxBackgroundColor;
-        border-color: $primaryDisabledColor;
+        border-color: colors.$accentColor;
       }
     }
 
     &.checked {
-      background: $primaryColor;
-      border-color: $primaryColor;
+      background: colors.$accentColor;
+      border-color: colors.$darkColor;
+      img {
+        opacity: 1;
+      }
 
       &:hover:not(.disabled) {
         background: $primaryHoverColor;

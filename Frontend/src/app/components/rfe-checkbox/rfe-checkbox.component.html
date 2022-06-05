@@ -3,11 +3,11 @@
   (click)="onInputChange(!checked)"
 >
   <div
-    class="sg-checkbox"
+    class="checkbox"
     tabindex="0"
-    [ngClass]="{ 'checked': checked, 'disabled': disabled, 'invalid': invalid }"
+    [ngClass]="{ 'checked': checked, 'disabled': disabled || forceDisabled, 'invalid': invalid }"
     (keydown.enter)="onInputChange(!checked)"
   >
-    <div class="icon-check icon-color-white"></div>
+    <img src="assets/img/tick.svg"/>
   </div>
 </div>

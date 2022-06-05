@@ -4,50 +4,131 @@
 
 <div class="answers-container">
   <div class="a-part-answers">
-    <ng-container *ngFor="let answersControl of APartAnswerControlsArray; let index = index">
+    <div class="answers-legend">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+    </div>
+    <ng-container *ngFor="let answersFormGroup of APartAnswerControlGroups; let index = index">
       <div class="task-answers-container">
         <div class="answer-title">A{{ index + 1 }}</div>
-        <div class="answer-checkboxes-container">
-          <input
-            type="checkbox"
-            [formControl]="answersControl"
-            [disabled]="answersControl.value.length > 0"
-            [checked]="hasAnswer(answersControl.value, '1')"
-            (select)="answersControl.value.push('1')"
-          />
+        <div class="answer-checkboxes-container" [formGroup]="answersFormGroup">
           <rfe-checkbox
             type="checkbox"
-            [formControl]="answersControl"
-            [disabled]="answersControl.value.length > 0"
-          />
-          <input
+            [formControl]="$any(answersFormGroup.get('1')!)"
+            [forceDisabled]="answersFormGroup.get('1')!.value"
+            (inputChange)="addChanges('A' + (index + 1), '1')"
+          ></rfe-checkbox>
+          <rfe-checkbox
             type="checkbox"
-            [formControl]="answersControl"
-            [disabled]="answersControl.value.length > 0"
-            [checked]="hasAnswer(answersControl.value, '3')"
-            (select)="answersControl.value.push('3')"
-          />
-          <input
+            [formControl]="$any(answersFormGroup.get('2')!)"
+            [forceDisabled]="answersFormGroup.get('2')!.value"
+            (inputChange)="addChanges('A' + (index + 1), '2')"
+          ></rfe-checkbox>
+          <rfe-checkbox
             type="checkbox"
-            [formControl]="answersControl"
-            [disabled]="answersControl.value.length > 0"
-            [checked]="hasAnswer(answersControl.value, '4')"
-            (select)="answersControl.value.push('4')"
-          />
-          <input
+            [formControl]="$any(answersFormGroup.get('3')!)"
+            [forceDisabled]="answersFormGroup.get('3')!.value"
+            (inputChange)="addChanges('A' + (index + 1), '3')"
+          ></rfe-checkbox>
+          <rfe-checkbox
             type="checkbox"
-            [formControl]="answersControl"
-            [disabled]="answersControl.value.length > 0"
-            [checked]="hasAnswer(answersControl.value, '5')"
-            (select)="answersControl.value.push('5')"
-          />
+            [formControl]="$any(answersFormGroup.get('4')!)"
+            [forceDisabled]="answersFormGroup.get('4')!.value"
+            (inputChange)="addChanges('A' + (index + 1), '4')"
+          ></rfe-checkbox>
+          <rfe-checkbox
+            type="checkbox"
+            [formControl]="$any(answersFormGroup.get('5')!)"
+            [forceDisabled]="answersFormGroup.get('5')!.value"
+            (inputChange)="addChanges('A' + (index + 1), '5')"
+          ></rfe-checkbox>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <span class="container-title">Отмена ошибочных меток</span>
+
+  <div class="a-part-cancellation-container">
+    <ng-container *ngFor="let cancellationGroup of APartCancellationAnswerControlGroups; let index = index">
+      <div class="a-part-cancellation-item-container" [formGroup]="cancellationGroup">
+        <span class="task-type-title">A</span>
+        <div class="cancellation-details-container">
+          <span class="cancellation-label">№ вопроса</span>
+          <input
+            #taskInput
+            class="task-id-input"
+            type="text"
+            formControlName="taskId"
+            [readonly]="formSnapshot.APartCancellation[index].taskId.length > 0"
+            (change)="preventEditing(taskInput, cancellationGroup, AnswerOperationType.AddAPartTaskId)"
+          >
+        </div>
+        <span class="task-type-title cancellation-dash">-</span>
+        <div class="cancellation-details-container">
+          <span class="cancellation-label">№ метки</span>
+          <input
+            #answerInput
+            class="cancel-answer-input"
+            type="text"
+            formControlName="answerToCancel"
+            [readonly]="formSnapshot.APartCancellation[index].answerToCancel.length > 0"
+            (change)="preventEditing(answerInput, cancellationGroup, AnswerOperationType.AddAPartAnswerToRemove)"
+          >
         </div>
       </div>
     </ng-container>
   </div>
 
   <div class="b-part-answers">
+    <ng-container *ngFor="let answersFormGroup of BPartAnswerControls; let index = index">
+      <div class="b-answer-container">
+        <span>B{{ index + 1 }}</span>
+        <input
+          #BAnswerInput
+          type="text"
+          [formControl]="answersFormGroup"
+          [readonly]="formSnapshot.BPart[index].length > 0"
+          (change)="preventEditing(BAnswerInput, answersFormGroup, AnswerOperationType.AddBPartAnswer, 'B' + (index + 1))"
+        >
+      </div>
+    </ng-container>
   </div>
 
-  {{ form.value | json }}
+  <span class="container-title">Отмена ошибочных ответов части B</span>
+
+  <div class="b-part-cancellation-container">
+    <ng-container *ngFor="let cancellationGroup of BPartCancellationAnswerControlGroups; let index = index">
+      <div class="b-part-cancellation-item-container" [formGroup]="cancellationGroup">
+        <span class="task-type-title">B</span>
+        <input
+          #BTaskEditingInput
+          class="task-id-input"
+          type="text"
+          formControlName="taskId"
+          [readonly]="formSnapshot.BPartCancellation[index].taskId.length > 0"
+          (change)="preventEditing(BTaskEditingInput, cancellationGroup, AnswerOperationType.AddBPartTaskId)"
+        >
+        <span class="task-type-title cancellation-dash">—</span>
+        <input
+          #BAnswerEditingInput
+          class="edit-answer-input"
+          type="text"
+          formControlName="answerToCancel"
+          [readonly]="formSnapshot.BPartCancellation[index].answerToCancel.length > 0"
+          (change)="preventEditing(BAnswerEditingInput, cancellationGroup, AnswerOperationType.AddBPartAnswerToEdit)"
+        >
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="button-container">
+    <button (click)="redirectToFinalPage()">
+      Завершить тест
+    </button>
+  </div>
 </div>
+
