@@ -23,4 +23,16 @@ export class TaskPageComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  isImageAnswers(subject: Subject, catalog: string, id: string): string {
+    if (subject === 'math') {
+      if (catalog === '2015') {
+        if (id === 'A4' || id === 'A6') {
+          return id;
+        }
+      }
+    }
+
+    return '';
+  }
 }

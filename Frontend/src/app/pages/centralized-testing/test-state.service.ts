@@ -307,7 +307,7 @@ export class TestStateService {
     this.tasksService
       .getFullTestAnswers(subject, testSetItems)
       .subscribe(testAnswers => {
-        testAnswers.forEach(answer => this.state.addCorrectAnswer(answer.taskId, answer.correctAnswer))
+        testAnswers.forEach(answer => this.state.addCorrectAnswer(answer.taskId, answer.correctAnswer?.toString() ?? '0'))
       });
   }
 

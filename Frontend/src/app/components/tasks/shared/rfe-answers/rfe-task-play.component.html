@@ -1,5 +1,5 @@
 <p class="task-text">{{ taskText }}</p>
-<div class="play-answers">
+<div class="play-answers" *ngIf="answers && answers.length > 0">
   <ng-container *ngIf="!images; else imageAnswers">
     <ng-container *ngFor="let answer of answers; let i = index">
       <p>{{ i + 1 + ') ' + answer }}</p>
@@ -7,8 +7,10 @@
   </ng-container>
   <ng-template #imageAnswers>
     <ng-container *ngFor="let answer of answers; let i = index">
-      <p>{{ i + 1 + ')' }}</p>
-      <img [src]="'assets/img/tasks/' + answer">
+      <div>
+        <p>{{ i + 1 + ')' }}</p>
+        <img [src]="'assets/img/tasks/' + answer">
+      </div>
     </ng-container>
   </ng-template>
 </div>

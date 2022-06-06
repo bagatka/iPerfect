@@ -5,12 +5,14 @@
     [catalog]="taskCatalog"
     [seed]="taskSeed"
   ></a1_2015>
-  <a4_2015
-    *ngSwitchCase="'A4'"
+  <rfe-image-answers-task
+    *ngSwitchCase="isImageAnswers(taskSubject, taskCatalog, taskId)"
     [mode]="TaskComponentMode.Play"
+    [subject]="taskSubject"
+    [id]="taskId"
     [catalog]="taskCatalog"
     [seed]="taskSeed"
-  ></a4_2015>
+  ></rfe-image-answers-task>
   <rfe-text-task
     *ngSwitchDefault
     [mode]="TaskComponentMode.Play"

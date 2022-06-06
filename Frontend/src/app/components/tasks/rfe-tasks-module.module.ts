@@ -6,7 +6,7 @@ import { A1_2015Component } from './math/2015/a1/a1_2015.component';
 import { RfeCoordinateLineComponent } from './shared/rfe-coordinate-line/rfe-coordinate-line.component';
 import { RfeTaskPlayComponent } from './shared/rfe-answers/rfe-task-play.component';
 import { RfeTextTaskComponent } from './shared/rfe-text-task/rfe-text-task.component';
-import { A4_2015Component } from './math/2015/a4/a4_2015.component';
+import { RfeImageAnswersTaskComponent } from './shared/rfe-image-answers-task/rfe-image-answers-task.component';
 
 
 @NgModule({
@@ -15,12 +15,12 @@ import { A4_2015Component } from './math/2015/a4/a4_2015.component';
     RfeTaskPlayComponent,
     A1_2015Component,
     RfeTextTaskComponent,
-    A4_2015Component
+    RfeImageAnswersTaskComponent
   ],
   exports: [
     A1_2015Component,
     RfeTextTaskComponent,
-    A4_2015Component
+    RfeImageAnswersTaskComponent
   ],
   imports: [
     CommonModule,

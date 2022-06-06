@@ -144,7 +144,6 @@ export class TestAnswerSheetComponent {
     }
 
     this.formSnapshot = this.form.getRawValue();
-    console.log(this.formSnapshot);
   }
 
   private getArray(length: number): Array<unknown> {
