@@ -4,5 +4,5 @@
 
 <div class="results-stats">
   <div>Пройдено за <span>{{ testResults.timeSpent }}</span></div>
-  <div>Правильно выполнено <span>{{ testResults.correctAnswersCount }}</span>/30</div>
+  <div>Правильно выполнено <span>{{ testResults.correctAnswersCount ?? 0 }}</span>/30</div>
 </div>
