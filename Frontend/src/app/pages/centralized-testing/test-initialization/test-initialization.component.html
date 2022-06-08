@@ -14,6 +14,7 @@
       <button
         (click)="setSubject('physics')"
         class="physics-button"
+        [disabled]="true"
         [ngClass]="{ 'selected': physicsSelected }"
       >
         Физика
